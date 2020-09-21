@@ -7,7 +7,7 @@
 - <a href = "https://www.jetbrains.com/pycharm/download/">Pycharm</a>
 ### Installing Flask
 #### Via terminal
-```shell script
+```shell
 $ sudo apt-get install python3-pip
 $ sudo pip3 install flask
 ```
