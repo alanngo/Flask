@@ -1,7 +1,13 @@
-from flask import *
+from flask import jsonify, Flask
+from Student import Student
+
+HOST = 'localhost'
+PORT = 5000
 
 app = Flask(__name__)
 
+
+# example reference code
 
 # runs if a GET request is made
 @app.route('/', methods=['GET'])
@@ -27,6 +33,24 @@ def delete_req():
     return "using delete request"
 
 
-if __name__ == '__main__':
+students = \
+    [
+        Student(name="omar", language="shell", framework="flask", loves="research"),
+        Student(name="angela", language="python", framework="react", loves="data science")
+    ]
+
+
+@app.route('/students', methods=['GET'])
+def get_students():
+    json_list = []
+    for s in students:
+        json_list.append(s.__dict__)
+    return jsonify(json_list)
+
+
+def main():
     app.debug = True
-    app.run(host='localhost', port=5000)
+    app.run(HOST, PORT)
+
+
+main()
