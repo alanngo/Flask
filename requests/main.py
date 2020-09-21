@@ -1,4 +1,4 @@
-from flask import jsonify, Flask
+from flask import jsonify, request, Flask
 from Student import Student
 
 HOST = 'localhost'
@@ -46,6 +46,18 @@ def get_students():
     for s in students:
         json_list.append(s.__dict__)
     return jsonify(json_list)
+
+
+@app.route('/students', methods=['POST'])
+def add_student():
+    data = request.get_json()
+    students.append(Student(
+        name=data['name'],
+        language=data['language'],
+        framework=data['framework'],
+        loves=data['loves']
+        ))
+    return data
 
 
 def main():
