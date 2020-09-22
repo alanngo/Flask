@@ -41,3 +41,10 @@ def main():
 
 main()
 ```
+## Important stuff
+```python
+# foo will execute if a GET or POST request is made with 'pancakes' in the URL
+@app.route('pancakes', methods=['GET', 'POST']) # 1st argument: route name. 2nd argument: API requests 
+def foo(): # http://{HOST}:{PORT}/pancakes
+    return "pancake jokes are so flat"
+```

@@ -5,6 +5,7 @@ HOST = 'localhost'
 PORT = 5000
 
 app = Flask(__name__)
+student_id = 2
 
 
 # example reference code
@@ -34,10 +35,10 @@ def delete_req():
 
 
 students = \
-    [
-        Student(name="omar", language="shell", framework="flask", loves="research"),
-        Student(name="angela", language="python", framework="react", loves="data science")
-    ]
+    {
+        Student(sid=0, name="omar", language="shell", framework="flask", loves="research"),
+        Student(sid=1, name="angela", language="python", framework="react", loves="data science")
+    }
 
 
 @app.route('/students', methods=['GET'])
@@ -48,16 +49,31 @@ def get_students():
     return jsonify(json_list)
 
 
+@app.route('/students/<id>', methods=['GET'])
+def get_student(id: int):
+    err = 'error'
+    msg = f"no student with id {id}"
+    for s in students:
+        tmp = Student(sid=id, name=None, language=None, framework=None, loves=None)
+        if tmp.__eq__(s):
+            return s.__dict__
+    return {err: msg}
+
+
 @app.route('/students', methods=['POST'])
 def add_student():
+    global student_id
+    student_id = student_id + 1
     data = request.get_json()
-    students.append(Student(
+    student = Student(
+        sid=student_id,
         name=data['name'],
         language=data['language'],
         framework=data['framework'],
-        loves=data['loves']
-        ))
-    return data
+        loves=data['loves'])
+    students.add(student)
+
+    return student
 
 
 def main():
