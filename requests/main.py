@@ -76,6 +76,11 @@ def add_student():
     return student
 
 
+@app.route('/students', methods=['PUT'])
+def update_student():
+    return "todo"
+
+
 def main():
     app.debug = True
     app.run(HOST, PORT)
