@@ -1,12 +1,21 @@
 # Flask 
-
+<p>6627 favorite framework</p>
 ## Prerequisites
 ### Software
 - <a href="https://www.postman.com/downloads/">Postman</a>
 - <a href = "https://www.python.org/downloads/">Python 3</a>
 - <a href = "https://www.jetbrains.com/pycharm/download/">Pycharm</a>
+- <a href = "https://www.mongodb.com/try/download/enterprise">MongoDB</a>
+### Installing MongoDB
+1. Follow the MongoDB link listed above
+2. choose your OS
+3. Select the latest version
+4. Click 'Download'
+5. Follow the steps in the set up wizard 
+    - make sure "Install MongoDB Compass" is checked
+<img src = "img/mongo_install.jpg">
 ### Installing Flask
-#### Via terminal
+#### Via Linux terminal
 ```shell
 $ sudo apt-get install python3-pip
 $ sudo pip3 install flask
