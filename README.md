@@ -10,6 +10,7 @@
 ```shell
 $ sudo apt-get install python3-pip
 $ sudo pip3 install flask
+$ sudo pip3 install flask-cors
 ```
 
 #### Via Pycharm
@@ -24,6 +25,7 @@ $ sudo pip3 install flask
 ## Starter Code
 ```python
 from flask import *
+from flask_cors import *
 
 # runtime configurations
 HOST = 'localhost'
@@ -36,6 +38,7 @@ def index():
     return "hello world"
 
 def main():
+    CORS(app)
     app.debug = True
     app.run(HOST, PORT)
 
@@ -77,4 +80,13 @@ def foo(key):  # EX: http://localhost:5000/computers/windows
 @app.route('/company/<arg0>/<arg1>', methods=['GET'])
 def bar(arg0, arg1):  # EX: http://localhost:5000/company/shantanu/infosys
     return f"Hello My name is {arg0}, I work at {arg1}"
+```
+
+### Loading JSON request body
+```python
+@app.route('/', methods=['GET'])
+def foo():
+    # THIS SNIPPET IS REQUIRED TO LOAD JSON DATA
+    obj = request.get_json() 
+    return obj
 ```

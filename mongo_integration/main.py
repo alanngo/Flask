@@ -16,6 +16,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def get_students():
+    print(m.size())
     val = jsonify(m.find_all())
     return val
 
