@@ -61,6 +61,7 @@ class MongoDB:
 
     '''
     adds an entry to the database with a user-defined id
+    @param id: the new id to add
     @param entity: the object entity to add
     '''
     def add_by_id(self, id, entity: dict):
@@ -88,6 +89,21 @@ class MongoDB:
     def remove_by_id(self, id):
         self.__collection.delete_one({"_id": int(id)})
 
+    # update functions
+
+    '''
+    updates an entries attributes
+    @param id: the id of the entry we want to update
+    @key: attribute name we want to update
+    @value: attribute value mapped from key
+    @aggregate: default set
+    https://docs.mongodb.com/manual/reference/operator/aggregation/set/
+    '''
+    def update_entry(self, id, key: str, value: any, aggregate="set"):
+        curr = self.find_by_id(id)
+        updated = {"$" + aggregate: {key: value}}
+        self.__collection.update_one(curr, updated)
+
     # properties functions
 
     '''
@@ -101,5 +117,9 @@ class MongoDB:
             count = count + 1
         return count
 
+    '''
+    sees if collection is empty
+    @return: true if size is equal to 0
+    '''
     def empty(self):
         return self.size() == 0
