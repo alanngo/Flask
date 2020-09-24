@@ -1,8 +1,18 @@
+from random import *
+
+from numpy import long
 from pymongo import *
 from pymongo.errors import DuplicateKeyError
 
 
 class MongoDB:
+    # helper functions
+    def __probe(self, id):
+        count = 0
+        while len(self.find_by_id(id + count)) > 0:
+            count = count + 1
+        return count
+
     # constructor
     def __init__(self, database, doc, url=None, host=None, port=None):
 
@@ -12,6 +22,7 @@ class MongoDB:
             cluster = MongoClient(url)
         db = cluster[database]
         self.__collection = db[doc]
+        self.__n = 0  # for auto increment purposes
 
     # retrieval functions
 
@@ -19,6 +30,7 @@ class MongoDB:
     retrieves every entry in the database
     @return every element in the database
     '''
+
     def find_all(self):
         ret = []
         coll = self.__collection.find({})
@@ -32,6 +44,7 @@ class MongoDB:
     @param value: criteria value
     @return the entries with the associated criteria
     '''
+
     def find_by_criteria(self, key, value):
         coll = self.__collection.find({key: value})
         ret = []
@@ -46,6 +59,7 @@ class MongoDB:
     @param id: the id to enter
     @return the entry w/ associated id
     '''
+
     def find_by_id(self, id):
         ret = self.find_by_criteria("_id", int(id))
         return ret
@@ -56,6 +70,7 @@ class MongoDB:
     adds an entry to the database with a auto-generated id
     @param entity: the object entity to add
     '''
+
     def default_add(self, entity: dict):
         self.__collection.insert_one(entity)
 
@@ -64,21 +79,24 @@ class MongoDB:
     @param id: the new id to add
     @param entity: the object entity to add
     '''
+
     def add_by_id(self, id, entity: dict):
         try:
-            stub = {'_id': int(id)}
+            stub = {'_id': id}
             stub.update(entity)
             self.default_add(stub)
         except DuplicateKeyError:
-            pass
+            raise RuntimeError(f"Duplicate keys detected: {id}")
 
     '''
-    adds an entry to the database by auto-incrementing the id
+    adds an entry to the database by auto-incrementing:wq
     @param entity: the object entity to add
     '''
+
     def add(self, entity: dict):
-        index = self.size()
-        self.add_by_id(index + 1, entity)
+        index = self.size() + 1
+        offset = self.__probe(index)
+        self.add_by_id(index + offset, entity)
 
     # removal functions
 
@@ -86,8 +104,16 @@ class MongoDB:
     removes an entry based on an id
     @param id: the object associated with id to remove
     '''
+
     def remove_by_id(self, id):
         self.__collection.delete_one({"_id": int(id)})
+
+    '''
+    clears all collections in the database
+    '''
+
+    def clear(self):
+        self.__collection.drop()
 
     # update functions
 
@@ -99,6 +125,7 @@ class MongoDB:
     @aggregate: default set
     https://docs.mongodb.com/manual/reference/operator/aggregation/set/
     '''
+
     def update_entry(self, id, key: str, value: any, aggregate="set"):
         curr = self.find_by_id(id)
         updated = {"$" + aggregate: {key: value}}
@@ -110,6 +137,7 @@ class MongoDB:
     size of collection
     @return number of elements in the collection
     '''
+
     def size(self):
         return self.__collection.count_documents({})
 
@@ -117,5 +145,6 @@ class MongoDB:
     sees if collection is empty
     @return: true if size is equal to 0
     '''
+
     def empty(self):
         return self.size() == 0
