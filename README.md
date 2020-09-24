@@ -1,11 +1,14 @@
 # Flask 
 <p>6627 favorite framework</p>
+
 ## Prerequisites
+
 ### Software
 - <a href="https://www.postman.com/downloads/">Postman</a>
 - <a href = "https://www.python.org/downloads/">Python 3</a>
 - <a href = "https://www.jetbrains.com/pycharm/download/">Pycharm</a>
 - <a href = "https://www.mongodb.com/try/download/enterprise">MongoDB</a>
+
 ### Installing MongoDB
 1. Follow the MongoDB link listed above
 2. choose your OS
