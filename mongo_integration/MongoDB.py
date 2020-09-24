@@ -111,11 +111,7 @@ class MongoDB:
     @return number of elements in the collection
     '''
     def size(self):
-        count = 0
-        coll = self.find_all()
-        for _ in coll:
-            count = count + 1
-        return count
+        return self.__collection.count_documents({})
 
     '''
     sees if collection is empty
