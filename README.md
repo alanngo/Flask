@@ -17,6 +17,8 @@
 5. Follow the steps in the set up wizard 
     - make sure "Install MongoDB Compass" is checked
 <img src = "img/mongo_install.jpg">
+
+
 ### Installing Flask
 #### Via Linux terminal
 ```shell
