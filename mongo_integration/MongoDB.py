@@ -1,6 +1,4 @@
-from random import *
 
-from numpy import long
 from pymongo import *
 from pymongo.errors import DuplicateKeyError
 
@@ -22,7 +20,6 @@ class MongoDB:
             cluster = MongoClient(url)
         db = cluster[database]
         self.__collection = db[doc]
-        self.__n = 0  # for auto increment purposes
 
     # retrieval functions
 

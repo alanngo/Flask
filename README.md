@@ -17,6 +17,9 @@
 5. Follow the steps in the set up wizard 
     - make sure "Install MongoDB Compass" is checked
 <img src = "img/mongo_install.jpg">
+
+More info: https://github.com/alanngo/mongodb
+
 ### Installing Flask
 #### Via Linux terminal
 ```shell
@@ -92,6 +95,16 @@ def foo(key):  # EX: http://localhost:5000/computers/windows
 @app.route('/company/<arg0>/<arg1>', methods=['GET'])
 def bar(arg0, arg1):  # EX: http://localhost:5000/company/shantanu/infosys
     return f"Hello My name is {arg0}, I work at {arg1}"
+```
+
+
+### Query Parameter
+```python
+# leave the route alone
+@app.route('/ut')
+def data(): # EX: http://localhost:5000/ut?subject=research
+    fav_subject = request.args.['subject'] # this line of code is important
+    return f"6627 56837 {fav_subject}"
 ```
 
 ### Loading JSON request body
