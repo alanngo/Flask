@@ -18,6 +18,7 @@
     - make sure "Install MongoDB Compass" is checked
 <img src = "img/mongo_install.jpg">
 
+
 More info: https://github.com/alanngo/mongodb
 
 ### Installing Flask
