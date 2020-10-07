@@ -9,14 +9,7 @@
 - <a href = "https://www.mongodb.com/try/download/enterprise">MongoDB</a>
 
 ### Installing MongoDB
-1. Follow the MongoDB link listed above
-2. choose your OS
-3. Select the latest version
-4. Click 'Download'
-5. Follow the steps in the set up wizard 
-    - make sure "Install MongoDB Compass" is checked
-<img src = "img/mongo_install.jpg">
-6. Install mongodb to python
+Installation steps: https://github.com/alanngo/mongodb
 
 ```bash
 $ pip3 install pymongo
@@ -24,7 +17,6 @@ $ pip3 install pymongo[srv]
 $ pip3 install dnspython
 ```
 
-More info: https://github.com/alanngo/mongodb
 
 ### Installing Flask
 #### Via Linux terminal
