@@ -1,5 +1,4 @@
 # Flask 
-<p>6627 favorite framework</p>
 
 ## Prerequisites
 
@@ -17,7 +16,13 @@
 5. Follow the steps in the set up wizard 
     - make sure "Install MongoDB Compass" is checked
 <img src = "img/mongo_install.jpg">
+6. Install mongodb to python
 
+```bash
+$ pip3 install pymongo
+$ pip3 install pymongo[srv]
+$ pip3 install dnspython
+```
 
 More info: https://github.com/alanngo/mongodb
 
@@ -43,22 +48,17 @@ $ sudo pip3 install flask-cors
 from flask import *
 from flask_cors import *
 
-# runtime configurations
-HOST = 'localhost'
-PORT = 5000
-
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def index():
     return "hello world"
 
-def main():
-    CORS(app)
+if __name__ == '__main__':
+    CORS(app) # lets other programs consume app
     app.debug = True
-    app.run(HOST, PORT)
+    app.run()
 
-main()
 ```
 ## Important Concepts
 ### Basics
@@ -102,7 +102,7 @@ def bar(arg0, arg1):  # EX: http://localhost:5000/company/shantanu/infosys
 ### Query Parameter
 ```python
 # leave the route alone
-@app.route('/ut')
+@app.route('/ut', methods=['GET'])
 def data(): # EX: http://localhost:5000/ut?subject=research
     fav_subject = request.args.['subject'] # this line of code is important
     return f"6627 56837 {fav_subject}"
@@ -116,3 +116,8 @@ def foo():
     obj = request.get_json() 
     return obj
 ```
+
+## Deployment
+
+### Heroku
+https://github.com/alanngo/heroku-flask
