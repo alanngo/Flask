@@ -1,4 +1,4 @@
-# Flask 
+<img src="img/flask-logo.png" width="200">
 
 ## Prerequisites
 
