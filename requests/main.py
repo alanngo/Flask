@@ -1,6 +1,5 @@
 from flask import jsonify, request, Flask
-from Student import Student
-
+from Student import *
 HOST = 'localhost'
 PORT = 5000
 

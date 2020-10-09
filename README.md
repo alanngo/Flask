@@ -8,31 +8,23 @@
 - <a href = "https://www.jetbrains.com/pycharm/download/">Pycharm</a>
 - <a href = "https://www.mongodb.com/try/download/enterprise">MongoDB</a>
 
-### Installing MongoDB
-Installation steps: https://github.com/alanngo/mongodb
+### Set up MongoDB
 
+https://github.com/alanngo/MongoDB
+
+### Install Python Packages
+
+#### Command Line
 ```bash
-$ pip3 install pymongo
-$ pip3 install pymongo[srv]
-$ pip3 install dnspython
+
+$ sudo pip3 install -r requirements.txt
 ```
 
+#### Pycharm
+1. Tools => Sync Python Requirements
+2. Make sure your settings match image below
 
-### Installing Flask
-#### Via Linux terminal
-```shell
-$ sudo apt-get install python3-pip
-$ sudo pip3 install flask
-$ sudo pip3 install flask-cors
-```
-
-#### Via Pycharm
-1. Ctrl + Alt + s -> Project Interpreter
-2. Click on the '+' icon to install software
-3. Search 'flask' and install it
-
-<img src = "img/install1.PNG">
-<img src = "img/install2.PNG">
+<img src= "img/requirements.PNG">
 
 
 ## Starter Code
