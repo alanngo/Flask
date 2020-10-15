@@ -101,6 +101,23 @@ def foo():
     return obj
 ```
 
+### Error Handling
+```python
+@app.errorhandler(Exception) # this advice handles all errors
+def handle_general_error(e: Exception):
+    message = str(e)
+    return {"Error": f"{message}"}, 400
+
+@app.errorhandler(RuntimeError) # this advice handles all instances of runtime errors
+def handle_runtime_error(e: RuntimeError):
+    message = str(e)
+    return {"RuntimeError": f"{message}"}, 404
+
+@app.errorhandler(ValueError) # this advice handles all instances of value errors
+def handle_value_error(e: ValueError):
+    message = str(e)
+    return {"ValueError": f"{message}"}, 403
+```
 ## Deployment
 
 ### Heroku
