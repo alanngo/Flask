@@ -1,6 +1,6 @@
 from flask import *
 from flask_cors import *
-
+from logger import *
 app = Flask(__name__)
 
 
@@ -23,8 +23,9 @@ def error(err):
 # error advice
 @app.errorhandler(Exception)
 def handle_general_error(e: Exception):
+    log(e)
     message = str(e)
-    return {"Error": f"6627 should {message}"}, 400
+    return {f"{type(e).__name__}": f"6627 should {message}"}, 400
 
 
 if __name__ == '__main__':
