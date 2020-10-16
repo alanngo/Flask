@@ -1,5 +1,9 @@
 from datetime import *
+import logging
 
+logging.basicConfig(level=logging.DEBUG, filename="err.log")
+logger = logging.getLogger()
+logger.addHandler(logging.StreamHandler())
 now = datetime.now()
 
 
@@ -11,6 +15,5 @@ def __write(message):
 
 def log(exception):
     ex_name = type(exception).__name__
-    message = f"{now}: {ex_name} {exception}\n"
-    __write(message)
-    print(message)
+    message = f"{ex_name}: {exception}"
+    logger.debug(message)

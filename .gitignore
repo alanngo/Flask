@@ -2,3 +2,5 @@
 */__pycache__
 .vscode
 */sandbox.*
+*/*.log
+*/*.diff

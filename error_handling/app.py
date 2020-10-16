@@ -14,7 +14,7 @@ def error(err):
     if err == "RuntimeError":
         raise RuntimeError("Learn SQL")
     if err == "TypeError":
-        raise RuntimeError("Read Textbooks")
+        raise TypeError("Read Textbooks")
     if err == "ValueError":
         raise ValueError("Do Research")
     return "success"
