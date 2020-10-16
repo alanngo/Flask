@@ -1,7 +1,10 @@
 from flask import *
 from flask_cors import *
-from logger import *
+
+from error_advice import *
+
 app = Flask(__name__)
+app.register_blueprint(advice)
 
 
 @app.route('/', methods=['GET'])
@@ -18,14 +21,6 @@ def error(err):
     if err == "ValueError":
         raise ValueError("Do Research")
     return "success"
-
-
-# error advice
-@app.errorhandler(Exception)
-def handle_general_error(e: Exception):
-    log(e)
-    message = str(e)
-    return {f"{type(e).__name__}": f"6627 should {message}"}, 400
 
 
 if __name__ == '__main__':
