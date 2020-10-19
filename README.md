@@ -118,6 +118,23 @@ def handle_value_error(e: ValueError):
     message = str(e)
     return {"ValueError": f"{message}"}, 403
 ```
+
+## Automate Project Creation
+#### Prerequisites
+- Step 1
+```bash
+$ cat flask_init.sh >> ~/flask_init.sh
+```
+- Step 2
+```bash
+$ echo "alias flaskgen='bash ~/flask_init.sh'">>~/.bashrc
+```
+- Step 3: Close and restart terminal
+
+#### Continuous
+- run ``$ flaskgen <PROJECT_NAME>`` to create a flask project
+
+
 ## Deployment
 
 ### Heroku
