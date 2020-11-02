@@ -40,8 +40,7 @@ def index():
 
 if __name__ == '__main__':
     CORS(app) # lets other programs consume app
-    app.debug = True
-    app.run()
+    app.run(debug=True)
 
 ```
 ## Important Concepts
