@@ -87,7 +87,7 @@ def bar(arg0, arg1):  # EX: http://localhost:5000/company/shantanu/infosys
 # leave the route alone
 @app.route('/ut', methods=['GET'])
 def data(): # EX: http://localhost:5000/ut?subject=research
-    fav_subject = request.args.['subject'] # this line of code is important
+    fav_subject = request.args['subject'] # this line of code is important
     return f"6627 56837 {fav_subject}"
 ```
 
